@@ -21,13 +21,11 @@ namespace Data.Repositories
         public async Task AddAsync(ProductCategory entity)
         {
             await _context.ProductCategories.AddAsync(entity);
-            await _context.SaveChangesAsync();
         }
 
-        public async void Delete(ProductCategory entity)
+        public void Delete(ProductCategory entity)
         {
             _context.ProductCategories.Remove(entity);  
-            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteByIdAsync(int id)
@@ -37,8 +35,6 @@ namespace Data.Repositories
             if (productCategory != null)
             {
                 _context.ProductCategories.Remove(productCategory);
-
-                await _context.SaveChangesAsync();
             }
         }
 
@@ -52,10 +48,9 @@ namespace Data.Repositories
             return _context.ProductCategories.FirstOrDefaultAsync(c => c.Id == id); 
         }
 
-        public async void Update(ProductCategory entity)
+        public void Update(ProductCategory entity)
         {
             _context.ProductCategories.Update(entity);
-            await _context.SaveChangesAsync();
         }
     }
 }

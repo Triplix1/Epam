@@ -2,6 +2,8 @@ using Data.Data;
 using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using AutoMapper;
+using Business;
 
 namespace Library.Tests
 {
@@ -19,6 +21,14 @@ namespace Library.Tests
             }
 
             return options;
+        }
+
+        public static IMapper CreateMapperProfile()
+        {
+            var myProfile = new AutomapperProfile();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+
+            return new Mapper(configuration);
         }
 
         public static void SeedData(TradeMarketDbContext context)

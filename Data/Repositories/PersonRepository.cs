@@ -22,26 +22,20 @@ namespace Data.Repositories
         public async Task AddAsync(Person entity)
         {
             await _context.Persons.AddAsync(entity);
-
-            await _context.SaveChangesAsync();
         }
 
         public void Delete(Person entity)
         {
             _context.Persons.Remove(entity);
-
-            _context.SaveChanges();
         }
 
         public async Task DeleteByIdAsync(int id)
         {
-            var person = _context.Persons.FirstOrDefault(x => x.Id == id);
+            var person = await _context.Persons.FirstOrDefaultAsync(x => x.Id == id);
 
             if (person != null)
             {
                 _context.Persons.Remove(person);
-
-                await _context.SaveChangesAsync();
             }
         }
 
@@ -58,8 +52,6 @@ namespace Data.Repositories
         public void Update(Person entity)
         {
             _context.Persons.Update(entity);
-
-            _context.SaveChanges();
         }
     }
 }

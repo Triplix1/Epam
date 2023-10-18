@@ -22,13 +22,11 @@ namespace Data.Repositories
         public async Task AddAsync(Receipt entity)
         {
             await _context.Receipts.AddAsync(entity);
-            await _context.SaveChangesAsync();  
         }
 
         public void Delete(Receipt entity)
         {
             _context.Receipts.Remove(entity);
-            _context.SaveChanges();
         }
 
         public async Task DeleteByIdAsync(int id)
@@ -38,7 +36,6 @@ namespace Data.Repositories
             if (receipt != null)
             {
                 _context.Receipts.Remove(receipt);
-                await _context.SaveChangesAsync();  
             }
         }
 
@@ -77,7 +74,6 @@ namespace Data.Repositories
         public void Update(Receipt entity)
         {
             _context.Receipts.Update(entity);
-            _context.SaveChanges();
         }
     }
 }

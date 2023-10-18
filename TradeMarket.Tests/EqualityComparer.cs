@@ -1,6 +1,7 @@
 ﻿using Data.Entities;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Business.Models;
 
 namespace TradeMarket.Tests
 {
@@ -124,6 +125,50 @@ namespace TradeMarket.Tests
         }
 
         public int GetHashCode([DisallowNull] ReceiptDetail obj)
+        {
+            return obj.GetHashCode();
+        }
+    }
+
+    internal class CustomerModelEqualityComparer : IEqualityComparer<CustomerModel>
+    {
+        public bool Equals([AllowNull] CustomerModel x, [AllowNull] CustomerModel y)
+        {
+            if (x == null && y == null)
+                return true;
+            if (x == null || y == null)
+                return false;
+
+            return x.Id == y.Id &&
+                x.BirthDate == y.BirthDate &&
+                x.DiscountValue == y.DiscountValue &&
+                string.Equals(x.Name, y.Name) &&
+                string.Equals(x.Surname, y.Surname);
+        }
+
+        public int GetHashCode([DisallowNull] CustomerModel obj)
+        {
+            return obj.GetHashCode();
+        }
+    }
+
+    internal class ProductModelEqualityComparer : IEqualityComparer<ProductModel>
+    {
+        public bool Equals([AllowNull] ProductModel x, [AllowNull] ProductModel y)
+        {
+            if (x == null && y == null)
+                return true;
+            if (x == null || y == null)
+                return false;
+
+            return x.Id == y.Id &&
+                x.ProductCategoryId == y.ProductCategoryId &&
+                string.Equals(x.CategoryName, y.CategoryName) &&
+                string.Equals(x.ProductName, y.ProductName) &&
+                x.Price == y.Price;
+        }
+
+        public int GetHashCode([DisallowNull] ProductModel obj)
         {
             return obj.GetHashCode();
         }

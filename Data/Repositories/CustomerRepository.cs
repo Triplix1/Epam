@@ -22,13 +22,11 @@ namespace Data.Repositories
         public async Task AddAsync(Customer entity)
         {
             await _context.Customers.AddAsync(entity);
-            await _context.SaveChangesAsync();
         }
 
         public void Delete(Customer entity)
         {
             _context.Customers.Remove(entity);
-            _context.SaveChanges();
         }
 
         public async Task DeleteByIdAsync(int id)
@@ -38,7 +36,6 @@ namespace Data.Repositories
             if (customer != null)
             {
                 _context.Customers.Remove(customer);
-                await _context.SaveChangesAsync();
             }
         }
 
@@ -65,7 +62,6 @@ namespace Data.Repositories
         public void Update(Customer entity)
         {
             _context.Customers.Update(entity);
-            _context.SaveChanges();
         }
     }
 }

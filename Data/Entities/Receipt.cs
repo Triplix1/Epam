@@ -17,6 +17,6 @@ namespace Data.Entities
         public bool IsCheckedOut { get; set; }
 
         public Customer Customer { get; set; }
-        public ICollection<ReceiptDetail> ReceiptDetails { get;}
+        public ICollection<ReceiptDetail> ReceiptDetails { get; set; }
     }
 }

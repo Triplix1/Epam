@@ -22,13 +22,11 @@ namespace Data.Repositories
         public async Task AddAsync(Product entity)
         {
             await _context.Products.AddAsync(entity);   
-            await _context.SaveChangesAsync();
         }
 
-        public async void Delete(Product entity)
+        public void Delete(Product entity)
         {
             _context.Products.Remove(entity);
-            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteByIdAsync(int id)
@@ -38,7 +36,6 @@ namespace Data.Repositories
             if (product != null)
             {
                 _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
             }
         }
 
@@ -67,13 +64,12 @@ namespace Data.Repositories
                 .Include(p => p.Category)
                 .Include(p => p.ReceiptDetails)
                 .ThenInclude(d => d.Receipt)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public void Update(Product entity)
         {
             _context.Update(entity);
-            _context.SaveChanges();
         }
     }
 }

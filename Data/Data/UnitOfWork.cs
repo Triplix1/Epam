@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Data.Data
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
+        private readonly TradeMarketDbContext _context;
         public UnitOfWork(ICustomerRepository customerRepository,
             IPersonRepository personRepository,
             IProductCategoryRepository productCategoryRepository,
             IProductRepository productRepository,
             IReceiptDetailRepository receiptDetailRepository,
-            IReceiptRepository receiptRepository)
+            IReceiptRepository receiptRepository,
+            TradeMarketDbContext context)
         {
             CustomerRepository = customerRepository;
             PersonRepository = personRepository;
@@ -21,6 +23,7 @@ namespace Data.Data
             ProductRepository = productRepository;
             ReceiptDetailRepository = receiptDetailRepository;
             ReceiptRepository = receiptRepository;
+            _context = context;
         }
 
         public ICustomerRepository CustomerRepository { get; set; }
@@ -29,5 +32,10 @@ namespace Data.Data
         public IProductRepository ProductRepository { get; set; }
         public IReceiptDetailRepository ReceiptDetailRepository { get; set; }
         public IReceiptRepository ReceiptRepository { get; set; }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

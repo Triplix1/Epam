@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>..\code-analysis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+</Project>
